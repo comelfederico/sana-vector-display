@@ -1,11 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from '@/components/dashboard/Header';
+import { CameraGrid } from '@/components/dashboard/CameraGrid';
+import { Sidebar } from '@/components/dashboard/Sidebar';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="flex flex-col h-screen bg-background overflow-hidden">
+      {/* Header */}
+      <Header />
+
+      {/* Main Content */}
+      <div className="flex flex-1 min-h-0">
+        {/* Main Stage - Camera Grid (75%) */}
+        <main className="flex-1 p-4 lg:p-6 min-w-0">
+          <CameraGrid />
+        </main>
+
+        {/* Intelligence Sidebar (25%) */}
+        <div className="w-72 lg:w-80 xl:w-96 flex-shrink-0 hidden md:block">
+          <Sidebar />
+        </div>
       </div>
     </div>
   );
