@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { Shield, Activity, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Shield, Activity, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   withBackButton?: boolean;
@@ -9,16 +9,24 @@ interface HeaderProps {
 export function Header({ withBackButton = false }: HeaderProps) {
   const navigate = useNavigate();
 
-  const currentTime = new Date().toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  });
+  // const currentTime = new Date().toLocaleTimeString('en-US', {
+  //   hour: '2-digit',
+  //   minute: '2-digit',
+  //   hour12: false,
+  // });
 
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'short',
-    day: 'numeric',
+  const currentTime = "07:06";
+
+  // const currentTime = new Date().toLocaleTimeString('en-US', {
+  //   hour: '2-digit',
+  //   minute: '2-digit',
+  //   hour12: false,
+  // });
+
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
   });
 
   return (
@@ -32,7 +40,7 @@ export function Header({ withBackButton = false }: HeaderProps) {
       >
         {withBackButton && (
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="w-9 h-9 rounded-lg bg-secondary/50 hover:bg-secondary/70 border border-border flex items-center justify-center transition-colors"
           >
             <ArrowLeft className="w-5 h-5 text-foreground" />

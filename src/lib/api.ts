@@ -76,3 +76,59 @@ export async function fetchSystemMetrics(): Promise<SystemMetrics> {
   }
   return response.json();
 }
+
+/**
+ * Create a new scenario
+ * POST /scenarios
+ */
+export interface CreateScenarioRequest {
+  name: string;
+  location: string;
+  zoneType: string;
+  rtspUrl: string;
+  vssConfig: {
+    contaminationDefinition: string;
+    decontaminationDefinition: string;
+    specificConcerns: string[];
+  };
+}
+
+export async function createScenario(data: CreateScenarioRequest): Promise<Scenario> {
+  if (!API_BASE_URL) {
+    // Mock data fallback - simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // In a real implementation, this would return the created scenario from the API
+    const newScenario: Scenario = {
+      id: `scenario-${Date.now()}`,
+      name: data.name,
+      location: data.location,
+      zoneType: data.zoneType,
+      status: 'safe',
+      statusLabel: 'STERILE',
+      eventsLast24h: 0,
+      eventsCritical: 0,
+      eventsWarning: 0,
+      lastUpdate: 'Just now',
+      videoUrl: data.rtspUrl,
+      isActive: true,
+      confidence: 95,
+    };
+
+    return newScenario;
+  }
+
+  const response = await fetch(`${API_BASE_URL}/scenarios`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to create scenario');
+  }
+
+  return response.json();
+}
