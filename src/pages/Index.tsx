@@ -1,5 +1,6 @@
 import { Header } from '@/components/dashboard/Header';
-import { CameraGrid } from '@/components/dashboard/CameraGrid';
+import { ScenarioSystemOverview } from '@/components/scenario/ScenarioSystemOverview';
+import { ContaminationMetrics } from '@/components/scenario/ContaminationMetrics';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 
 const Index = () => {
@@ -10,9 +11,10 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="flex flex-1 min-h-0">
-        {/* Main Stage - Camera Grid (75%) */}
-        <main className="flex-1 p-4 lg:p-6 min-w-0">
-          <CameraGrid />
+        {/* Main Stage - Scenario Overview (75%) */}
+        <main className="flex-1 p-4 lg:p-6 min-w-0 flex flex-col">
+          <ContaminationMetrics />
+          <ScenarioSystemOverview />
         </main>
 
         {/* Intelligence Sidebar (25%) */}

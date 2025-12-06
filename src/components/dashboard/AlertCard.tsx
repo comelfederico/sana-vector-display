@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Alert } from '@/types/camera';
+import { Alert } from '@/types/scenario';
 import { cn } from '@/lib/utils';
 
 interface AlertCardProps {
@@ -26,7 +26,7 @@ export function AlertCard({ alert, index }: AlertCardProps) {
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-caption font-medium">{alert.time}</span>
+            <span className="text-caption font-medium">{alert.timestamp}</span>
           </div>
           <p className="text-body leading-snug">{alert.message}</p>
         </div>

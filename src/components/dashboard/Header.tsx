@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
-import { Shield, Activity } from 'lucide-react';
+import { Shield, Activity, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export function Header() {
+interface HeaderProps {
+  withBackButton?: boolean;
+}
+
+export function Header({ withBackButton = false }: HeaderProps) {
+  const navigate = useNavigate();
+
   const currentTime = new Date().toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
@@ -23,12 +30,20 @@ export function Header() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
+        {withBackButton && (
+          <button
+            onClick={() => navigate('/')}
+            className="w-9 h-9 rounded-lg bg-secondary/50 hover:bg-secondary/70 border border-border flex items-center justify-center transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5 text-foreground" />
+          </button>
+        )}
         <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-foreground/10 to-foreground/5 border border-border flex items-center justify-center">
           <Shield className="w-5 h-5 text-foreground" />
         </div>
         <div>
           <h1 className="text-lg font-semibold tracking-tight">Vector</h1>
-          <p className="text-caption">Bio-Safety Monitoring</p>
+          <p className="text-caption">Contamination Detection</p>
         </div>
       </motion.div>
 
